@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; // Import di material design
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Import di material design
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page 18'),
+      home: const MyHomePage(title: 'Ciao, sono l\'appBar!'),
     );
   }
 }
@@ -77,13 +78,24 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
+        shadowColor: Color(0xFFFFFFFF),
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color.fromARGB(255, 255, 0, 88),
+        centerTitle: true,
+        elevation: 50,
+        toolbarTextStyle: TextStyle(fontWeight: FontWeight.bold),
+        actions: [
+        const Icon(Icons.ice_skating),
+          Icon(Icons.accessible_sharp),
+        IconButton(onPressed: () => {print('ciao')}, icon: Icon(Icons.import_contacts))],
+        // C\'era prima questo Theme.of(context).colorScheme.inversePrimary
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -118,7 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      drawer: Drawer(backgroundColor: Colors.green,)
     );
   }
 }
